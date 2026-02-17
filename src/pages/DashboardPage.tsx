@@ -6,13 +6,6 @@ import {
   Typography,
   Card,
   CardContent,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Chip,
   CircularProgress,
 } from '@mui/material';
 import {
@@ -21,12 +14,8 @@ import {
   EventBusy as EventBusyIcon,
   Inventory as InventoryIcon,
 } from '@mui/icons-material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { GET_DASHBOARD_STATS } from '@/graphql/queries';
-import { DashboardStats, MovementType } from '@/types';
-import { format } from 'date-fns';
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+import { DashboardStats } from '@/types';
 
 export default function DashboardPage() {
   const { data, loading, error } = useQuery<{ dashboardStats: DashboardStats }>(GET_DASHBOARD_STATS);
@@ -75,19 +64,6 @@ export default function DashboardPage() {
       color: '#d32f2f',
     },
   ];
-
-  const getMovementTypeColor = (type: MovementType) => {
-    switch (type) {
-      case 'IN':
-        return 'success';
-      case 'OUT':
-        return 'error';
-      case 'ADJUSTMENT':
-        return 'warning';
-      default:
-        return 'default';
-    }
-  };
 
   return (
     <Box>
