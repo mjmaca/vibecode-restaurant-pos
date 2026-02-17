@@ -3,11 +3,11 @@ import { stockMovementResolvers } from './stockMovement.resolvers.js';
 import { supplierResolvers } from './supplier.resolvers.js';
 import { dashboardResolvers } from './dashboard.resolvers.js';
 
-export const resolvers = {
+export const resolvers: any = {
   Query: {
-    ...dashboardResolvers.Query,
-    ...ingredientResolvers.Query,
-    ...stockMovementResolvers.Query,
+    ...(dashboardResolvers.Query || {}),
+    ...(ingredientResolvers.Query || {}),
+    ...(stockMovementResolvers.Query || {}),
     ...supplierResolvers.Query,
   },
   Mutation: {
