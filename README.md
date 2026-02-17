@@ -99,7 +99,7 @@ VITE_FIREBASE_APP_ID=your_app_id
 FIREBASE_SERVICE_ACCOUNT_BASE64=your_base64_encoded_service_account_json
 
 # GraphQL API URL (use /api/graphql for production)
-VITE_GRAPHQL_API_URL=http://localhost:3000/api/graphql
+VITE_GRAPHQL_API_URL=/api/graphql
 ```
 
 ### 5. Firestore Security Rules
@@ -186,6 +186,10 @@ npm run dev
 ```
 
 Visit http://localhost:3000
+
+**Sample Username and Password**
+Username:admin@restaurant.com
+Password: admin123
 
 ## 🚀 Deployment to Vercel
 
