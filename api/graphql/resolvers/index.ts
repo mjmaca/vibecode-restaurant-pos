@@ -1,7 +1,7 @@
-import { ingredientResolvers } from './ingredient.resolvers';
-import { stockMovementResolvers } from './stockMovement.resolvers';
-import { supplierResolvers } from './supplier.resolvers';
-import { dashboardResolvers } from './dashboard.resolvers';
+import { ingredientResolvers } from './ingredient.resolvers.js';
+import { stockMovementResolvers } from './stockMovement.resolvers.js';
+import { supplierResolvers } from './supplier.resolvers.js';
+import { dashboardResolvers } from './dashboard.resolvers.js';
 
 export const resolvers = {
   Query: {

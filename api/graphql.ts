@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-micro';
-import { typeDefs } from './graphql/typeDefs';
-import { resolvers } from './graphql/resolvers';
-import { verifyToken, AuthContext } from './lib/auth';
+import { typeDefs } from './graphql/typeDefs.js';
+import { resolvers } from './graphql/resolvers/index.js';
+import { verifyToken, AuthContext } from './lib/auth.js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 // #region agent log

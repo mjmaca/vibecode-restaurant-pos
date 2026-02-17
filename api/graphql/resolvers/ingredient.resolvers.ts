@@ -1,5 +1,5 @@
-import { db, COLLECTIONS } from '../../lib/firebase-admin';
-import { requireAuth, requireRole, AuthContext } from '../../lib/auth';
+import { db, COLLECTIONS } from '../../lib/firebase-admin.js';
+import { requireAuth, requireRole, AuthContext } from '../../lib/auth.js';
 import { addDays, isBefore } from 'date-fns';
 
 interface Ingredient {

@@ -1,4 +1,4 @@
-import { auth } from './firebase-admin';
+import { auth } from './firebase-admin.js';
 
 export interface AuthContext {
   user: {
