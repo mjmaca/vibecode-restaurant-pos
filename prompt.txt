@@ -1,0 +1,215 @@
+Build a production-level Restaurant & Café Inventory Management System using the following stack:
+
+Frontend:
+- React (Vite or Next.js App Router)
+- TypeScript
+- Tailwind CSS
+- Material UI
+- TanStack Table
+- React Hook Form
+- Apollo Client
+
+Backend:
+- GraphQL (Apollo Server)
+- Firebase Firestore
+- Firebase Authentication
+- Firebase Admin SDK (for server-side token verification)
+
+Deployment:
+- Vercel (frontend + serverless GraphQL API)
+
+--------------------------------------------------
+PROJECT REQUIREMENTS
+--------------------------------------------------
+
+This system is for restaurants and cafés to manage ingredients and stock.
+
+The system must include:
+
+1) Authentication
+- Firebase Auth (email/password)
+- Roles: ADMIN, STAFF
+- Protect GraphQL resolvers by role
+- Verify Firebase ID token in backend
+
+2) Dashboard
+- Show:
+  - Total inventory value
+  - Low stock items
+  - Expiring soon items
+  - Recent stock movements
+- Use charts (Recharts)
+
+3) Inventory Management
+Each ingredient must have:
+- id
+- name
+- category
+- unit (kg, pcs, liters, grams, ml)
+- stock
+- lowStockThreshold
+- costPerUnit
+- supplierId
+- expiryDate (optional)
+- archived flag
+- createdAt
+- updatedAt
+
+Features:
+- Create ingredient
+- Update ingredient
+- Archive ingredient
+- Filter by category
+- Search by name
+- Show stock status indicator:
+    - Green = Safe
+    - Yellow = Low
+    - Red = Critical
+
+4) Stock Movements
+Track:
+- IN (restock)
+- OUT (used/sold)
+- ADJUSTMENT
+
+Each movement:
+- ingredientId
+- type
+- quantity
+- note
+- performedBy
+- createdAt
+
+When a movement is created:
+- Automatically update ingredient stock
+- Prevent stock from going below 0
+
+5) Suppliers
+- Create supplier
+- Edit supplier
+- Link ingredients to supplier
+
+6) Business Logic
+- Inventory value = stock * costPerUnit
+- Low stock query
+- Expiring within 7 days query
+- Audit logs
+
+--------------------------------------------------
+ARCHITECTURE REQUIREMENTS
+--------------------------------------------------
+
+Create this structure:
+
+/src
+  /components
+  /pages
+  /features
+  /graphql
+  /hooks
+  /services
+  /utils
+
+/api/graphql.ts (Vercel serverless)
+
+Use:
+- Firebase Admin in backend
+- Firebase client SDK in frontend
+- Apollo Client on frontend
+- Apollo Server on backend
+
+--------------------------------------------------
+GRAPHQL REQUIREMENTS
+--------------------------------------------------
+
+Generate:
+- typeDefs
+- Resolvers
+- Context with verified Firebase token
+- Role-based access control
+
+Include:
+Query:
+- ingredients
+- ingredient(id)
+- lowStockIngredients
+- stockMovements
+- suppliers
+- dashboardStats
+
+Mutation:
+- createIngredient
+- updateIngredient
+- archiveIngredient
+- recordStockMovement
+- createSupplier
+- updateSupplier
+
+--------------------------------------------------
+FIRESTORE DATA MODEL
+--------------------------------------------------
+
+Collections:
+- users
+- ingredients
+- stockMovements
+- suppliers
+
+Use proper timestamps.
+Use indexes where necessary.
+
+--------------------------------------------------
+UI REQUIREMENTS
+--------------------------------------------------
+
+Create:
+- Sidebar layout
+- Responsive dashboard
+- Data tables with sorting & filtering
+- Modal forms for create/update
+- Status badges
+- Toast notifications
+- Loading skeletons
+
+Design must be:
+- Modern SaaS style
+- Tablet friendly
+- Clean and minimal
+
+--------------------------------------------------
+DEPLOYMENT REQUIREMENTS
+--------------------------------------------------
+
+Make it deploy-ready for Vercel:
+- Environment variables setup
+- Firebase config setup
+- Service account config
+- Instructions for deployment
+
+--------------------------------------------------
+CODE QUALITY
+--------------------------------------------------
+
+- Use TypeScript everywhere
+- Clean modular code
+- Reusable components
+- Separate business logic from UI
+- Use async/await properly
+- Handle errors properly
+- Include comments for important logic
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do NOT generate everything in one massive file.
+
+Generate:
+1) Project structure
+2) Backend GraphQL server
+3) Firebase setup
+4) Frontend setup
+5) One feature fully implemented (Inventory CRUD)
+6) Then continue step by step.
+
+Think like a senior engineer building a scalable SaaS product.

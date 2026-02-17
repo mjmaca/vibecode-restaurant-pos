@@ -1,0 +1,54 @@
+{
+  "rules_version": "2",
+  "service": "cloud.firestore",
+  "description": "Firestore Security Rules for Restaurant Inventory System",
+  "rules": {
+    "match /databases/{database}/documents": {
+      "// Helper Functions": null,
+      "function isAuthenticated()": {
+        "return": "request.auth != null"
+      },
+      "function isAdmin()": {
+        "return": "isAuthenticated() && request.auth.token.role == 'ADMIN'"
+      },
+      "function isStaff()": {
+        "return": "isAuthenticated() && request.auth.token.role == 'STAFF'"
+      },
+      "function isOwner(userId)": {
+        "return": "isAuthenticated() && request.auth.uid == userId"
+      },
+      
+      "// Users Collection": null,
+      "match /users/{userId}": {
+        "allow read": "if isAuthenticated()",
+        "allow create": "if isAdmin()",
+        "allow update": "if isAdmin() || isOwner(userId)",
+        "allow delete": "if isAdmin()"
+      },
+      
+      "// Ingredients Collection": null,
+      "match /ingredients/{ingredientId}": {
+        "allow read": "if isAuthenticated()",
+        "allow create": "if isAdmin()",
+        "allow update": "if isAdmin()",
+        "allow delete": "if isAdmin()"
+      },
+      
+      "// Stock Movements Collection": null,
+      "match /stockMovements/{movementId}": {
+        "allow read": "if isAuthenticated()",
+        "allow create": "if isAuthenticated()",
+        "allow update": "if isAdmin()",
+        "allow delete": "if isAdmin()"
+      },
+      
+      "// Suppliers Collection": null,
+      "match /suppliers/{supplierId}": {
+        "allow read": "if isAuthenticated()",
+        "allow create": "if isAdmin()",
+        "allow update": "if isAdmin()",
+        "allow delete": "if isAdmin()"
+      }
+    }
+  }
+}
