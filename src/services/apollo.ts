@@ -29,12 +29,12 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           ingredients: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           stockMovements: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
